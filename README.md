@@ -1,20 +1,90 @@
-# SQL
-# Case Study | Business Intelligence and Visualization
-Introduction
-A year ago, María decided to start her own online sales business, which she named “TodoLoQueNecesitas.com.”
-Initially, she recorded all business information in Excel spreadsheets, but due to the company's growth in recent months, she realized the need to design and implement a database to register sales. This would help her keep track of suppliers, customers, products, and sales.
-Therefore, María has contacted you, an expert database designer and manager, to help improve her business.
+# 🧾 SQL Case Study: Business Intelligence for TodoLoQueNecesitas.com
 
-Problem Statement
-After several meetings, the following points have been defined to design the database:
+This project focuses on the **design, implementation, and analysis of a sales database** for a growing e-commerce business: **TodoLoQueNecesitas.com**. It simulates a real-world consulting case, where you act as the business intelligence and database expert responsible for optimizing data management and enabling actionable insights.
 
-The information needed for suppliers includes: their unique supplier ID, name, address, phone number, and website.
-A supplier can provide different products, and a product can be supplied by more than one supplier.
-For a customer, the information to store includes: their unique customer code, name, address, and multiple contact phone numbers.
-For both suppliers and customers, each address should contain details such as street, number, city, and region.
-The products sold have the following information: their unique ID, name, price, current stock, and the supplier's name who sells them.
-Products are organized into categories, and each product can only be classified under one category, while a category can contain multiple products. The information to be stored for each category includes: the unique ID, name, and description.
-The most important information to store is about each sale. Each sale includes: a unique invoice number, date, customer, discount, and total cost.
-Additionally, each sale consists of multiple products, with information about the price at which each product was sold and the units sold.
-It’s important to note that a product can be part of several sales but might also never have been sold. Also, each customer can be involved in multiple sales, but each sale will only involve one customer.
+Developed as part of the Business Intelligence & Visualization module at **IMMUNE Technology Institute**.
 
+---
+
+## 🎯 Business Context
+
+María, the founder of TodoLoQueNecesitas.com, originally tracked sales using Excel. As her online store grew, she needed a more robust and scalable data system. You were hired to:
+
+- **Design a relational database** to track customers, suppliers, products, and sales.
+- **Implement the schema in SQL**
+- **Generate key queries** to support business decision-making.
+- **(Optional)** Visualize sales KPIs using BI tools.
+
+---
+
+## 🧩 Requirements & Data Model
+
+### 📦 Entities & Relationships
+
+The following entities and relationships were modeled:
+
+#### 🧑 Customers
+- `CustomerID` (Primary Key)
+- Name, Address (street, number, city, region), Multiple phone numbers
+
+#### 🏢 Suppliers
+- `SupplierID` (Primary Key)
+- Name, Address, Phone, Website
+- A supplier can provide multiple products
+
+#### 📦 Products
+- `ProductID` (Primary Key)
+- Name, Price, Stock, CategoryID, Supplier relationships (many-to-many)
+
+#### 🗂️ Categories
+- `CategoryID` (Primary Key)
+- Name, Description
+- One-to-many with products
+
+#### 🧾 Sales
+- `InvoiceNumber` (Primary Key)
+- Date, `CustomerID` (foreign key), Discount, Total
+- A sale can include **multiple products** (many-to-many via `SaleDetails`)
+
+#### 🧾 SaleDetails (junction table)
+- `InvoiceNumber`, `ProductID`
+- Quantity, Sale Price
+
+---
+
+## 🛠️ Project Structure
+
+### 1. 📐 Database Design
+- Created **ER Diagram**
+- Normalized data up to 3NF
+- Defined primary and foreign keys
+
+### 2. 🧱 SQL Implementation
+- Wrote scripts to:
+  - Create tables
+  - Define relationships
+  - Insert sample/mock data for testing
+
+### 3. 🔍 Business Queries
+Examples of insights generated:
+- Top-selling products
+- Sales by category and month
+- Customers with highest lifetime value
+- Unsold products
+- Supplier contribution to total sales
+
+### 4. 📊 (Optional) BI Dashboard
+If using a visualization tool:
+- KPIs: Total Revenue, Avg Discount, Products per Sale
+- Charts: Sales over time, Revenue by category/supplier
+
+---
+
+## 🧰 Tools & Technologies
+
+- MySQL / PostgreSQL / SQLite
+- SQL DDL & DML
+- (Optional) Power BI / Tableau / Excel Pivot Tables
+- ERD tool (draw.io / dbdiagram.io)
+
+---
